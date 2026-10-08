@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Farms Coffee | Premium Philippine Coffee Since 1980</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        espresso: {
+                            50: '#FDFBF7',
+                            100: '#F7F3EB',
+                            200: '#EAE1D0',
+                            300: '#D5C3A5',
+                            600: '#8C6747',
+                            800: '#4A3425',
+                            900: '#2C1C12',
+                            950: '#1A0E0A',
+                        },
+                        amber: {
+                            500: '#D97706',
+                            600: '#B45309',
+                        },
+                        cream: '#FAF7F2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF7F2;
+            color: #2C1C12;
+        }
+        
+        .font-serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Shopify slide drawer transition */
+        .drawer-slide {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F3EB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5C3A5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8C6747;
+        }
+
+        /* Subtle pulse glow for active items */
+        .active-tab {
+            background-color: #4A3425;
+            color: #FAF7F2;
+            border-color: #4A3425;
+        }
+    </style>
+</head>
+<body class="antialiased text-espresso-900 bg-cream min-h-screen flex flex-col">
+
+    <!-- Shopify Top Bar Announcement -->
+    <div class="bg-espresso-950 text-amber-500 text-xs py-2 px-4 text-center font-medium tracking-wide flex justify-between items-center px-6">
+        <span class="hidden sm:inline"><i class="fa-solid fa-location-dot mr-1 text-amber-500"></i> Roasted fresh in Silang, Cavite, Philippines</span>
+        <span class="mx-auto sm:mx-0">☕ FREE Express Delivery for orders over ₱1,500! Code: <strong class="text-white underline">FRESHBREW</strong></span>
+        <span class="hidden md:inline"><i class="fa-solid fa-phone mr-1"></i> (046) 414-0209</span>
+    </div>
+
+    <!-- Main Header -->
+    <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-espresso-200 transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-espresso-800 hover:text-amber-600 focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-full bg-espresso-800 flex items-center justify-center text-amber-500 shadow-md group-hover:bg-espresso-900 transition">
+                        <i class="fa-solid fa-mug-hot text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="block font-serif-heading font-bold text-xl sm:text-2xl text-espresso-950 tracking-tight leading-none">GOURMET FARMS</span>
+                        <span class="block text-[10px] tracking-widest text-espresso-600 uppercase font-semibold">Silang, Cavite • Est. 1980</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links (Desktop) -->
+                <nav class="hidden lg:flex space-x-8 text-sm font-semibold text-espresso-800 tracking-wide">
+                    <a href="#hero" class="hover:text-amber-600 transition">HOME</a>
+                    <a href="#best-brew" class="hover:text-amber-600 transition">BEST BREW</a>
+                    <a href="#espresso-yourself" class="hover:text-amber-600 transition">ESPRESSO YOURSELF</a>
+                    <a href="#sip-it" class="hover:text-amber-600 transition">SIP IT LIKE YOU MEAN IT</a>
+                    <a href="#about" class="hover:text-amber-600 transition">OUR CAVITE ROASTERY</a>
+                </nav>
+
+                <!-- Header Action Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search Button -->
+                    <button id="searchOpenBtn" class="p-2 text-espresso-800 hover:text-amber-600 transition" title="Search Coffees">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+
+                    <!-- Wishlist Counter -->
+                    <button id="wishlistBtn" class="relative p-2 text-espresso-800 hover:text-amber-600 transition" title="Wishlist">
+                        <i class="fa-regular fa-heart text-lg"></i>
+                        <span id="wishlistBadge" class="absolute -top-1 -right-1 bg-amber-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                    </button>
+
+                    <!-- Shopping Cart Icon with Counter -->
+                    <button id="cartDrawerBtn" class="relative bg-espresso-800 hover:bg-espresso-900 text-white px-4 py-2.5 rounded-full flex items-center space-x-2 transition shadow-sm" title="View Shopping Cart">
+                        <i class="fa-solid fa-bag-shopping text-amber-400"></i>
+                        <span class="hidden sm:inline text-xs font-semibold uppercase tracking-wider">Cart</span>
+                        <span id="cartCountBadge" class="bg-amber-500 text-espresso-950 font-bold text-xs px-2 py-0.5 rounded-full ml-1">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer Overlay -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-espresso-900 text-cream border-t border-espresso-800 px-6 py-6 space-y-4">
+            <a href="#hero" class="block py-2 border-b border-espresso-800 font-medium text-amber-400 mobile-nav-link">Home</a>
+            <a href="#best-brew" class="block py-2 border-b border-espresso-800 font-medium hover:text-amber-400 mobile-nav-link">Best Brew (Shop Coffees)</a>
+            <a href="#espresso-yourself" class="block py-2 border-b border-espresso-800 font-medium hover:text-amber-400 mobile-nav-link">Espresso Yourself (Community)</a>
+            <a href="#sip-it" class="block py-2 border-b border-espresso-800 font-medium hover:text-amber-400 mobile-nav-link">Sip It Like You Mean It (Guide)</a>
+            <a href="#about" class="block py-2 font-medium hover:text-amber-400 mobile-nav-link">Our Cavite Roastery</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section id="hero" class="relative bg-espresso-950 text-white overflow-hidden py-20 lg:py-28">
+        <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1600&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-espresso-950 via-espresso-950/80 to-transparent"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl">
+                <span class="inline-block bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full mb-4">
+                    👑 Pioneering Philippine Coffee Culture Since 1980
+                </span>
+                <h1 class="font-serif-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cream mb-6 leading-tight">
+                    Pure Philippine Heritage in Every Fresh Cup.
+                </h1>
+                <p class="text-base sm:text-lg text-espresso-200 mb-8 leading-relaxed font-light">
+                    Sourced from the fertile volcanic highlands of Cavite, Batangas, and Mindanao. Freshly roasted daily in our estate in Silang, Cavite. Experience authentic Kapeng Barako, Arabica blends, and gourmet roasts.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#best-brew" class="bg-amber-500 hover:bg-amber-600 text-espresso-950 font-bold px-8 py-4 rounded-full transition duration-300 shadow-lg flex items-center space-x-2">
+                        <span>Shop Best Sellers</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#sip-it" class="border border-cream/40 hover:border-cream text-cream hover:bg-cream/10 font-semibold px-6 py-4 rounded-full transition duration-300 flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-play text-amber-400"></i>
+                        <span>Learn How To Brew</span>
+                    </a>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-12 pt-8 border-t border-espresso-800/80 grid grid-cols-3 gap-4 text-center sm:text-left text-xs text-espresso-300">
+                    <div>
+                        <span class="block text-lg font-bold text-amber-400">100% Philippine</span>
+                        <span>Organically Farmed & Roasted</span>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-bold text-amber-400">40+ Years</span>
+                        <span>Master Coffee Roasting</span>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-bold text-amber-400">4.9 ★★★★★</span>
+                        <span>Over 10k Happy Coffee Lovers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: BEST BREW (Products Grid & Filters) -->
+    <section id="best-brew" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-widest font-bold text-amber-600 mb-2 block">Our Signature Selection</span>
+            <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-espresso-950 mb-4">Best Brew Choices</h2>
+            <p class="text-espresso-600 text-sm sm:text-base">
+                Discover our celebrated lineup of single-origin and master-blended coffees, harvested from the finest farms in Batangas and high-altitude origins.
+            </p>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8 bg-espresso-100 p-4 rounded-2xl border border-espresso-200">
+            <!-- Filter Category Buttons -->
+            <div class="flex flex-wrap gap-2 w-full md:w-auto" id="filterCategoryContainer">
+                <button data-filter="all" class="filter-btn active-tab px-4 py-2 rounded-xl text-xs font-semibold border border-espresso-300 transition">All Coffees</button>
+                <button data-filter="barako" class="filter-btn bg-white hover:bg-espresso-200 text-espresso-800 px-4 py-2 rounded-xl text-xs font-semibold border border-espresso-300 transition">Batangas Barako</button>
+                <button data-filter="arabica" class="filter-btn bg-white hover:bg-espresso-200 text-espresso-800 px-4 py-2 rounded-xl text-xs font-semibold border border-espresso-300 transition">Mountain Arabica</button>
+                <button data-filter="blend" class="filter-btn bg-white hover:bg-espresso-200 text-espresso-800 px-4 py-2 rounded-xl text-xs font-semibold border border-espresso-300 transition">Special Blends</button>
+                <button data-filter="drip" class="filter-btn bg-white hover:bg-espresso-200 text-espresso-800 px-4 py-2 rounded-xl text-xs font-semibold border border-espresso-300 transition">Drip-On Sachets</button>
+            </div>
+
+            <!-- Sort By Select Box -->
+            <div class="flex items-center space-x-2 w-full md:w-auto justify-end">
+                <label for="sortSelect" class="text-xs font-medium text-espresso-700 whitespace-nowrap"><i class="fa-solid fa-arrow-down-short-wide mr-1"></i> Sort by:</label>
+                <select id="sortSelect" class="bg-white border border-espresso-300 text-espresso-900 text-xs rounded-xl p-2.5 focus:ring-amber-500 focus:border-amber-500">
+                    <option value="featured">Featured & Best Selling</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dynamic Product Cards Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            <!-- JavaScript will render product cards dynamically here -->
+        </div>
+    </section>
+
+    <!-- SECTION 2: ESPRESSO YOURSELF (Reviews & Community Photos) -->
+    <section id="espresso-yourself" class="bg-espresso-100 py-16 sm:py-24 border-y border-espresso-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs uppercase tracking-widest font-bold text-amber-600 mb-2 block">Community Wall & Feedback</span>
+                <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-espresso-950 mb-4">Espresso Yourself</h2>
+                <p class="text-espresso-700 text-sm sm:text-base">
+                    Join coffee enthusiasts across the Philippines! Share your daily Gourmet Farms brew moment, rate your favorite bag, and feature your photos on our live wall.
+                </p>
+            </div>
+
+            <!-- Content Split: Review Form & Community Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                
+                <!-- Review & Photo Submission Form -->
+                <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-espresso-200">
+                    <h3 class="font-serif-heading text-xl font-bold text-espresso-950 mb-2 flex items-center space-x-2">
+                        <i class="fa-solid fa-pen-nib text-amber-600"></i>
+                        <span>Leave a Coffee Review</span>
+                    </h3>
+                    <p class="text-xs text-espresso-600 mb-6">Share your aroma notes and coffee snap with fellow coffee lovers.</p>
+
+                    <form id="reviewForm" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-espresso-800 mb-1">Your Full Name</label>
+                            <input type="text" id="reviewerName" required placeholder="e.g., Maria Santos" class="w-full text-xs p-3 rounded-xl border border-espresso-300 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-espresso-800 mb-1">Select Coffee Bag</label>
+                            <select id="reviewerCoffee" required class="w-full text-xs p-3 rounded-xl border border-espresso-300 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <option value="Baraco Batangas Blend Coffee">Baraco Batangas Blend Coffee</option>
+                                <option value="Mountain-Grown Arabica Blend">Mountain-Grown Arabica Blend</option>
+                                <option value="Espresso Blend Coffee">Espresso Blend Coffee</option>
+                                <option value="Hazelnut Blend Coffee">Hazelnut Blend Coffee</option>
+                                <option value="Maynila Blend Coffee">Maynila Blend Coffee</option>
+                                <option value="Drip-On Coffee Sachets">Drip-On Coffee Sachets</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-espresso-800 mb-1">Rating</label>
+                            <div class="flex items-center space-x-2 text-amber-500 cursor-pointer text-xl" id="starRatingInput">
+                                <i class="fa-solid fa-star star-btn" data-rating="1"></i>
+                                <i class="fa-solid fa-star star-btn" data-rating="2"></i>
+                                <i class="fa-solid fa-star star-btn" data-rating="3"></i>
+                                <i class="fa-solid fa-star star-btn" data-rating="4"></i>
+                                <i class="fa-solid fa-star star-btn" data-rating="5"></i>
+                                <input type="hidden" id="selectedRatingValue" value="5">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-espresso-800 mb-1">Your Coffee Experience</label>
+                            <textarea id="reviewComment" rows="3" required placeholder="Tell us about the roast strength, body, aroma, or how you brewed it..." class="w-full text-xs p-3 rounded-xl border border-espresso-300 focus:ring-2 focus:ring-amber-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-espresso-800 mb-1">Upload Coffee Photo (Optional)</label>
+                            <div class="border-2 border-dashed border-espresso-300 rounded-xl p-4 text-center hover:bg-espresso-50 transition cursor-pointer relative" id="dropArea">
+                                <input type="file" id="reviewPhotoInput" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                <div id="uploadPlaceholder">
+                                    <i class="fa-solid fa-camera text-2xl text-espresso-400 mb-1"></i>
+                                    <p class="text-xs text-espresso-600">Click or drag & drop photo here</p>
+                                </div>
+                                <div id="uploadPreview" class="hidden flex items-center justify-center space-x-2">
+                                    <img id="previewImg" src="#" alt="Preview" class="w-12 h-12 object-cover rounded-lg border border-espresso-300">
+                                    <span class="text-xs text-emerald-700 font-semibold"><i class="fa-solid fa-check-circle"></i> Photo Ready</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-espresso-800 hover:bg-espresso-950 text-white font-bold text-xs py-3.5 rounded-xl transition shadow-md flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Submit Review & Share Photo</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Community Reviews List & Dynamic Grid -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-espresso-950 font-serif-heading">Verified Buyer Stories</h3>
+                        <span class="text-xs text-espresso-600 font-medium">Showing latest posts</span>
+                    </div>
+
+                    <!-- Reviews Cards Container -->
+                    <div id="reviewsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Dynamic JavaScript populates reviews here -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: SIP IT LIKE YOU MEAN IT (Interactive Brewing Recipes & Video Guide) -->
+    <section id="sip-it" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-widest font-bold text-amber-600 mb-2 block">Mastering The Brew</span>
+            <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-espresso-950 mb-4">Sip It Like You Mean It</h2>
+            <p class="text-espresso-600 text-sm sm:text-base">
+                Great beans deserve perfect preparation. Learn step-by-step methods crafted by Gourmet Farms master roasters in Silang, Cavite.
+            </p>
+        </div>
+
+        <!-- Brewing Method Selector Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mb-10" id="brewingTabContainer">
+            <button data-method="french-press" class="brew-tab active-tab px-5 py-3 rounded-2xl text-xs font-bold border transition flex items-center space-x-2">
+                <i class="fa-solid fa-glass-water"></i>
+                <span>French Press</span>
+            </button>
+            <button data-method="pour-over" class="brew-tab bg-white hover:bg-espresso-100 text-espresso-800 px-5 py-3 rounded-2xl text-xs font-bold border border-espresso-300 transition flex items-center space-x-2">
+                <i class="fa-solid fa-filter"></i>
+                <span>Pour-Over Drip</span>
+            </button>
+            <button data-method="barako-trad" class="brew-tab bg-white hover:bg-espresso-100 text-espresso-800 px-5 py-3 rounded-2xl text-xs font-bold border border-espresso-300 transition flex items-center space-x-2">
+                <i class="fa-solid fa-mug-hot"></i>
+                <span>Traditional Barako Brew</span>
+            </button>
+            <button data-method="espresso" class="brew-tab bg-white hover:bg-espresso-100 text-espresso-800 px-5 py-3 rounded-2xl text-xs font-bold border border-espresso-300 transition flex items-center space-x-2">
+                <i class="fa-solid fa-fire text-amber-600"></i>
+                <span>Espresso Machine</span>
+            </button>
+        </div>
+
+        <!-- Active Brewing Card & Interactive Tools -->
+        <div class="bg-white rounded-3xl border border-espresso-200 overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-12">
+            
+            <!-- Video & Photo Banner Column -->
+            <div class="lg:col-span-5 bg-espresso-950 text-white relative min-h-[300px] flex items-center justify-center p-6 bg-cover bg-center" id="brewHeroBg" style="background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1000&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-espresso-950/70"></div>
+                <div class="relative z-10 text-center space-y-4">
+                    <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center text-espresso-950 mx-auto shadow-2xl cursor-pointer hover:scale-110 transition duration-300 group" id="openVideoBtn">
+                        <i class="fa-solid fa-play text-2xl ml-1 group-hover:text-espresso-900"></i>
+                    </div>
+                    <span class="block text-xs uppercase tracking-widest text-amber-400 font-bold">Watch Video Walkthrough</span>
+                    <h3 class="font-serif-heading text-2xl font-bold text-cream" id="brewTitleDisplay">French Press Perfection</h3>
+                    <p class="text-xs text-espresso-200 max-w-xs mx-auto" id="brewDescDisplay">Rich body with velvety mouthfeel. Best for Mountain Arabica & Hazelnut blends.</p>
+                </div>
+            </div>
+
+            <!-- Step-by-Step Instructions & Ratio Calculator -->
+            <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-wrap items-center justify-between pb-6 border-b border-espresso-100 mb-6 gap-4">
+                        <!-- Quick Stats -->
+                        <div class="flex items-center space-x-4 text-xs font-semibold text-espresso-800">
+                            <div><i class="fa-regular fa-clock text-amber-600 mr-1"></i> Time: <span id="brewTimeDisplay" class="text-espresso-950 font-bold">4 Mins</span></div>
+                            <div><i class="fa-solid fa-temperature-three-quarters text-amber-600 mr-1"></i> Temp: <span id="brewTempDisplay" class="text-espresso-950 font-bold">93°C / 200°F</span></div>
+                            <div><i class="fa-solid fa-wheat-awn text-amber-600 mr-1"></i> Grind: <span id="brewGrindDisplay" class="text-espresso-950 font-bold">Coarse</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Water-To-Coffee Ratio Calculator -->
+                    <div class="bg-espresso-50 p-4 rounded-2xl mb-6 border border-espresso-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-espresso-900 uppercase tracking-wide"><i class="fa-solid fa-calculator text-amber-600 mr-1"></i> Coffee Ratio Calculator</span>
+                            <span class="text-xs text-espresso-600">Servings: <strong id="cupCount" class="text-amber-600">2 Cups</strong></span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <input type="range" id="cupSlider" min="1" max="6" value="2" class="w-full accent-amber-600 cursor-pointer">
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-espresso-800 font-semibold mt-3 pt-2 border-t border-espresso-200">
+                            <span>Coffee Grounds: <strong id="calcCoffeeGrams" class="text-espresso-950 font-bold">30g</strong></span>
+                            <span>Hot Water: <strong id="calcWaterMl" class="text-espresso-950 font-bold">450ml</strong></span>
+                            <span>Ratio: <span id="calcRatioText" class="text-amber-600 font-bold">1:15</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Steps List -->
+                    <div class="space-y-3" id="brewStepsList">
+                        <!-- Dynamic Steps populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Widget Trigger -->
+                <div class="mt-8 pt-6 border-t border-espresso-100 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="text-2xl font-mono font-bold text-espresso-950" id="timerDisplay">04:00</div>
+                        <button id="startTimerBtn" class="bg-amber-500 hover:bg-amber-600 text-espresso-950 font-bold px-4 py-2 rounded-xl text-xs transition">
+                            <i class="fa-solid fa-play mr-1"></i> Start Brew Timer
+                        </button>
+                        <button id="resetTimerBtn" class="text-xs text-espresso-600 hover:text-espresso-900 underline">Reset</button>
+                    </div>
+
+                    <a href="#best-brew" class="text-xs font-bold text-amber-600 hover:text-amber-700 flex items-center space-x-1">
+                        <span>Shop Recommended Beans</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Our Cavite Roastery -->
+    <section id="about" class="bg-espresso-900 text-cream py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-amber-400 font-bold text-xs uppercase tracking-widest block mb-2">Our Heritage</span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold mb-6 text-white">Rooted in Silang, Cavite Since 1980</h2>
+                    <p class="text-espresso-200 text-sm leading-relaxed mb-4">
+                        Gourmet Farms is the first organic farm in the Philippines. For over four decades, our coffee master roasters have been carefully selecting and micro-roasting the finest coffee beans from local farmers across Cavite, Batangas, and the highland mountains of Mindanao.
+                    </p>
+                    <p class="text-espresso-200 text-sm leading-relaxed mb-6">
+                        From our iconic batches of Kapeng Barako to delicate high-altitude Arabicas, every pouch is freshly packed in high-barrier bags with one-way aroma degassing valves to ensure peak freshness at your doorstep.
+                    </p>
+                    <div class="flex items-center space-x-6 text-xs text-amber-400 font-semibold">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-leaf text-base"></i>
+                            <span>100% Organically Sourced</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-fire-burner text-base"></i>
+                            <span>Artisanal Micro-Roasting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1000&auto=format&fit=crop" alt="Coffee Roasting Silang Cavite" class="rounded-3xl shadow-2xl border-4 border-espresso-800 object-cover w-full h-80 sm:h-96">
+                    <div class="absolute -bottom-6 -left-6 bg-amber-500 text-espresso-950 p-4 rounded-2xl shadow-xl hidden sm:block">
+                        <span class="block font-bold text-lg font-serif-heading">Silang Estate</span>
+                        <span class="text-xs font-semibold">Open for coffee tastings & farm tours</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopify Style Footer -->
+    <footer class="bg-espresso-950 text-espresso-300 text-xs border-t border-espresso-800">
+        <!-- Newsletter Box -->
+        <div class="border-b border-espresso-800 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h3 class="font-serif-heading text-xl font-bold text-white mb-1">Get 10% Off Your First Fresh Coffee Bag</h3>
+                    <p class="text-espresso-400">Subscribe for fresh roast notifications, brew recipes, and Cavite estate specials.</p>
+                </div>
+                <form id="newsletterForm" class="flex w-full md:w-auto space-x-2">
+                    <input type="email" required placeholder="Enter your email address..." class="bg-espresso-900 border border-espresso-700 text-white text-xs rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 w-full sm:w-72">
+                    <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-espresso-950 font-bold px-6 py-3 rounded-xl transition whitespace-nowrap">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Links Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <span class="font-serif-heading text-lg font-bold text-white block">Gourmet Farms Coffee</span>
+                <p class="text-espresso-400 leading-relaxed">
+                    Km 52, Aguinaldo Highway, Lalaan 2nd, Silang, Cavite, Philippines.
+                </p>
+                <p class="text-espresso-400">
+                    <i class="fa-solid fa-envelope mr-1 text-amber-500"></i> info@gourmetfarms.com.ph<br>
+                    <i class="fa-solid fa-phone mr-1 text-amber-500"></i> +63 (046) 414-0209
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-3">Quick Shop</h4>
+                <ul class="space-y-2 text-espresso-400">
+                    <li><a href="#best-brew" class="hover:text-amber-400 transition">Batangas Barako Coffee</a></li>
+                    <li><a href="#best-brew" class="hover:text-amber-400 transition">Mountain Arabica Blend</a></li>
+                    <li><a href="#best-brew" class="hover:text-amber-400 transition">Full-Bodied Espresso Roast</a></li>
+                    <li><a href="#best-brew" class="hover:text-amber-400 transition">Hazelnut Flavored Blend</a></li>
+                    <li><a href="#best-brew" class="hover:text-amber-400 transition">Drip-On Coffee Boxes</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-3">Customer Care</h4>
+                <ul class="space-y-2 text-espresso-400">
+                    <li><a href="#" class="hover:text-amber-400 transition">Shipping & Cavite Express Delivery</a></li>
+                    <li><a href="#" class="hover:text-amber-400 transition">Grind Size Selection Guide</a></li>
+                    <li><a href="#" class="hover:text-amber-400 transition">Wholesale & Coffee Reseller Program</a></li>
+                    <li><a href="#" class="hover:text-amber-400 transition">FAQs & Store Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-3">Connect With Us</h4>
+                <div class="flex space-x-3 mb-4 text-base">
+                    <a href="#" class="w-9 h-9 rounded-full bg-espresso-800 hover:bg-amber-500 hover:text-espresso-950 flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-espresso-800 hover:bg-amber-500 hover:text-espresso-950 flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-espresso-800 hover:bg-amber-500 hover:text-espresso-950 flex items-center justify-center transition"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                <p class="text-espresso-400 mb-2">Accepted Payment Options:</p>
+                <div class="flex items-center space-x-2 text-xl text-espresso-400">
+                    <i class="fa-brands fa-cc-visa" title="Visa"></i>
+                    <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+                    <span class="bg-espresso-800 px-2 py-0.5 rounded text-[10px] font-bold text-amber-400">GCash</span>
+                    <span class="bg-espresso-800 px-2 py-0.5 rounded text-[10px] font-bold text-amber-400">Maya</span>
+                    <span class="bg-espresso-800 px-2 py-0.5 rounded text-[10px] font-bold text-amber-400">COD</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-espresso-900 py-6 text-center text-espresso-500">
+            <p>© 2026 Gourmet Farms Coffee Philippines. Shopify Front-End Store Concept. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- SHOPIFY SLIDE-OVER CART DRAWER -->
+    <div id="cartDrawerBackdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 shadow-2xl transform translate-x-full drawer-slide flex flex-col justify-between">
+        
+        <!-- Cart Drawer Header -->
+        <div class="p-5 border-b border-espresso-200 flex items-center justify-between bg-espresso-50">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-bag-shopping text-amber-600 text-lg"></i>
+                <h3 class="font-bold text-espresso-950 text-base font-serif-heading">Your Coffee Cart (<span id="cartDrawerCount">0</span>)</h3>
+            </div>
+            <button id="closeCartBtn" class="p-2 text-espresso-500 hover:text-espresso-950 transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Free Shipping Progress Bar -->
+        <div class="bg-espresso-100 p-4 border-b border-espresso-200">
+            <div class="flex justify-between text-xs font-semibold text-espresso-800 mb-1">
+                <span id="shippingProgressText">Add ₱1,500.00 for FREE Shipping!</span>
+                <span id="shippingPercentText">0%</span>
+            </div>
+            <div class="w-full bg-espresso-200 h-2 rounded-full overflow-hidden">
+                <div id="shippingProgressBar" class="bg-amber-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <!-- Cart Items List Container -->
+        <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+            <!-- JavaScript dynamically populates cart items or empty state -->
+        </div>
+
+        <!-- Cart Footer & Checkout Summary -->
+        <div class="p-5 border-t border-espresso-200 bg-cream space-y-3">
+            <div class="space-y-1 text-xs">
+                <div class="flex justify-between text-espresso-700">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal" class="font-bold text-espresso-950">₱0.00</span>
+                </div>
+                <div class="flex justify-between text-espresso-700">
+                    <span>Estimated Shipping:</span>
+                    <span id="cartShippingFee" class="font-medium text-emerald-700">Calculated at Checkout</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-espresso-950 pt-2 border-t border-espresso-200">
+                    <span>Total Amount:</span>
+                    <span id="cartTotal" class="text-amber-600">₱0.00</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="orderNote" class="block text-[10px] uppercase font-bold text-espresso-600 mb-1">Gift Note or Roaster Instruction:</label>
+                <input type="text" id="orderNote" placeholder="e.g., Coarse grind for French press please!" class="w-full text-xs p-2.5 rounded-xl border border-espresso-300 focus:ring-1 focus:ring-amber-500">
+            </div>
+
+            <button id="checkoutBtn" class="w-full bg-espresso-800 hover:bg-espresso-950 text-white font-bold py-3.5 rounded-xl transition shadow-lg flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-lock text-amber-400 text-xs"></i>
+                <span>Proceed to Shopify Checkout</span>
+            </button>
+            <p class="text-[10px] text-center text-espresso-500">🔒 Safe & Secure 256-Bit SSL Encrypted Checkout</p>
+        </div>
+    </aside>
+
+
+    <!-- PRODUCT QUICK VIEW MODAL -->
+    <div id="quickViewModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col md:flex-row">
+            <button id="closeQuickView" class="absolute top-4 right-4 bg-cream/80 hover:bg-cream rounded-full w-8 h-8 flex items-center justify-center z-10 text-espresso-800 shadow">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="md:w-1/2 bg-espresso-100 flex items-center justify-center p-6">
+                <img id="qvImage" src="" alt="Coffee" class="max-h-72 object-contain drop-shadow-xl">
+            </div>
+            <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                <div>
+                    <span id="qvRoastBadge" class="inline-block bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full mb-2">Dark Roast</span>
+                    <h3 id="qvTitle" class="font-serif-heading text-2xl font-bold text-espresso-950 mb-1">Coffee Title</h3>
+                    <div class="flex items-center space-x-2 mb-3 text-xs">
+                        <div class="text-amber-500" id="qvStars">★★★★★</div>
+                        <span id="qvRatingText" class="text-espresso-600 font-medium">(4.9 / 5.0)</span>
+                    </div>
+                    <div class="text-2xl font-bold text-amber-600 mb-4" id="qvPrice">₱0.00</div>
+                    <p id="qvDescription" class="text-xs text-espresso-700 leading-relaxed mb-4">Description text...</p>
+
+                    <!-- Selectors -->
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-espresso-800 mb-1">Select Grind Size:</label>
+                            <select id="qvGrindSelect" class="w-full text-xs p-2.5 rounded-xl border border-espresso-300">
+                                <option value="Whole Bean">Whole Bean (Fresh Roaster Pack)</option>
+                                <option value="Fine Ground">Fine Ground (Espresso / Moka Pot)</option>
+                                <option value="Medium Ground">Medium Ground (Drip / Pour Over)</option>
+                                <option value="Coarse Ground">Coarse Ground (French Press / Cold Brew)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-espresso-800 mb-1">Select Size / Pack:</label>
+                            <select id="qvSizeSelect" class="w-full text-xs p-2.5 rounded-xl border border-espresso-300">
+                                <option value="250g Bag">250g Standard Pouch</option>
+                                <option value="500g Bag">500g Value Pack</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3 pt-4 border-t border-espresso-100">
+                    <div class="flex items-center border border-espresso-300 rounded-xl overflow-hidden">
+                        <button id="qvQtyMinus" class="px-3 py-2 text-xs bg-espresso-100 hover:bg-espresso-200 font-bold">-</button>
+                        <span id="qvQtyDisplay" class="px-4 text-xs font-bold">1</span>
+                        <button id="qvQtyPlus" class="px-3 py-2 text-xs bg-espresso-100 hover:bg-espresso-200 font-bold">+</button>
+                    </div>
+                    <button id="qvAddToCartBtn" class="flex-1 bg-espresso-800 hover:bg-espresso-950 text-white font-bold text-xs py-3 rounded-xl transition shadow flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <span>Add To Cart</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BREWING VIDEO PLAYER MODAL -->
+    <div id="videoModal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-espresso-950 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl relative border border-espresso-800">
+            <button id="closeVideoBtn" class="absolute top-4 right-4 bg-espresso-800 hover:bg-espresso-700 text-white rounded-full w-10 h-10 flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="p-4 sm:p-6 text-white border-b border-espresso-800">
+                <h3 class="font-serif-heading text-xl font-bold" id="videoModalTitle">Brewing Masterclass</h3>
+                <p class="text-xs text-espresso-400">Gourmet Farms Cavite Coffee Guide</p>
+            </div>
+            <!-- Video Player Screen Mock -->
+            <div class="relative aspect-video bg-black flex items-center justify-center">
+                <iframe id="videoIframe" class="w-full h-full" src="" title="Coffee Brewing Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+
+    <!-- ALL FRONT-END JAVASCRIPT LOGIC -->
+    <script>
+        /* -------------------------------------------------------------
+           1. PRODUCT DATA (Sourced from gourmetfarms.com.ph coffee lineup)
+        ------------------------------------------------------------- */
+        const PRODUCTS = [
+            {
+                id: 'baraco-batangas',
+                name: 'Baraco Batangas Blend Coffee',
+                category: 'barako',
+                price: 306.00,
+                rating: 4.9,
+                reviewsCount: 128,
+                roast: 'Dark Roast',
+                image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=800&auto=format&fit=crop',
+                description: 'Bold, pungent aroma with intense earthy dark cocoa notes. Harvested directly from native Batangas Liberica and Robusta trees. Authentic Kapeng Barako flavor.',
+                badge: 'Best Seller 🔥'
+            },
+            {
+                id: 'mountain-arabica',
+                name: 'Mountain-Grown Arabica Blend',
+                category: 'arabica',
+                price: 383.00,
+                rating: 5.0,
+                reviewsCount: 94,
+                roast: 'Medium Roast',
+                image: 'https://images.unsplash.com/photo-1587734195503-904fca47e0e9?q=80&w=800&auto=format&fit=crop',
+                description: 'Smooth, aromatic Arabica beans cultivated in cool high-altitude slopes. Delivers subtle floral aromas, bright acidity, and a clean caramel finish.',
+                badge: 'Top Rated ⭐'
+            },
+            {
+                id: 'espresso-blend',
+                name: 'Espresso Blend Coffee',
+                category: 'blend',
+                price: 448.00,
+                rating: 4.8,
+                reviewsCount: 76,
+                roast: 'Full Dark Roast',
+                image: 'https://images.unsplash.com/photo-1610889556528-9a770e32642f?q=80&w=800&auto=format&fit=crop',
+                description: 'Full-bodied blend crafted specifically for espresso extractions. Generates dense crema, rich chocolate undertones, and winey complexity.',
+                badge: 'Barista Choice ☕'
+            },
+            {
+                id: 'hazelnut-blend',
+                name: 'Hazelnut Blend Coffee',
+                category: 'blend',
+                price: 369.00,
+                rating: 4.9,
+                reviewsCount: 112,
+                roast: 'Medium-Dark Roast',
+                image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800&auto=format&fit=crop',
+                description: 'Infused with natural sweet roasted hazelnut oils. Rich buttery aroma that fills the room, balanced with a smooth coffee finish.',
+                badge: 'Customer Favorite 🌰'
+            },
+            {
+                id: 'maynila-blend',
+                name: 'Maynila Blend Coffee',
+                category: 'blend',
+                price: 301.00,
+                rating: 4.7,
+                reviewsCount: 52,
+                roast: 'Classic City Roast',
+                image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop',
+                description: 'A traditional Filipino breakfast favorite. Strong, comforting, and smooth with a smoky finish that pairs wonderfully with condensed milk.',
+                badge: 'Traditional 🇵🇭'
+            },
+            {
+                id: 'decaf-gourmet',
+                name: 'Gourmet Farms Coffee Decaf',
+                category: 'blend',
+                price: 545.00,
+                rating: 4.6,
+                reviewsCount: 31,
+                roast: 'Medium Roast',
+                image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop',
+                description: '100% natural water-processed decaffeinated coffee. Enjoy rich coffee flavor late into the night without the caffeine kick.',
+                badge: 'Caffeine Free 🌱'
+            },
+            {
+                id: 'drip-on-sachets',
+                name: 'Drip-On Coffee Sachets (10s Box)',
+                category: 'drip',
+                price: 345.00,
+                rating: 4.9,
+                reviewsCount: 165,
+                roast: 'Assorted Single Servings',
+                image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=800&auto=format&fit=crop',
+                description: 'Brew cafe-quality pour-over coffee anywhere. Simply tear, hang over your cup, and pour hot water. Includes Barako, Arabica, and Hazelnut sachets.',
+                badge: 'Travel Essential ✈️'
+            }
+        ];
+
+        /* -------------------------------------------------------------
+           2. COMMUNITY REVIEWS & PHOTOS DATA (Espresso Yourself)
+        ------------------------------------------------------------- */
+        let communityReviews = [
+            {
+                name: 'Chef JP Anglo',
+                coffee: 'Baraco Batangas Blend Coffee',
+                rating: 5,
+                date: '2 days ago',
+                comment: 'Nothing beats native Baraco from Silang Cavite! Strong body, punchy aroma, and perfect for morning pour-overs.',
+                image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop',
+                verified: true
+            },
+            {
+                name: 'Bea Alonzo - Coffee Enthusiast',
+                coffee: 'Hazelnut Blend Coffee',
+                rating: 5,
+                date: '1 week ago',
+                comment: 'The hazelnut aroma fills my entire condo every single morning! Smooth, low acidity, and so comforting.',
+                image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600&auto=format&fit=crop',
+                verified: true
+            },
+            {
+                name: 'Mark & Angela (Quezon City)',
+                coffee: 'Drip-On Coffee Sachets',
+                rating: 5,
+                date: '2 weeks ago',
+                comment: 'Super convenient for our outdoor camping trips! Real gourmet brewed coffee without carrying heavy equipment.',
+                image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600&auto=format&fit=crop',
+                verified: true
+            }
+        ];
+
+        /* -------------------------------------------------------------
+           3. BREWING GUIDES DATA (Sip It Like You Mean It)
+        ------------------------------------------------------------- */
+        const BREWING_DATA = {
+            'french-press': {
+                title: 'French Press Immersion',
+                description: 'Full-bodied extraction highlighting natural coffee oils. Best with Baraco & Hazelnut blends.',
+                time: '4 Mins',
+                temp: '93°C / 200°F',
+                grind: 'Coarse',
+                ratio: 15, // 1g coffee to 15ml water
+                bgImg: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1000&auto=format&fit=crop',
+                youtubeId: 'st571DYYTR8', // Example coffee brewing video ID
+                steps: [
+                    'Pre-heat your French press beaker with hot water, then discard.',
+                    'Add coarse ground Gourmet Farms coffee into the beaker.',
+                    'Pour hot water (93°C) rapidly, soaking all grounds thoroughly.',
+                    'Gently stir once with a wooden spoon and put lid on with plunger pulled up.',
+                    'Wait exactly 4 minutes, then press plunger down steadily and serve immediately!'
+                ]
+            },
+            'pour-over': {
+                title: 'Pour-Over Drip Precision',
+                description: 'Clean, articulate flavor profile highlighting floral and citrus notes. Ideal for Mountain Arabica.',
+                time: '3 Mins',
+                temp: '92°C / 198°F',
+                grind: 'Medium-Fine',
+                ratio: 16,
+                bgImg: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=1000&auto=format&fit=crop',
+                youtubeId: 'A1S_S43S_eM',
+                steps: [
+                    'Place paper filter in V60 cone and rinse with hot water to remove paper taste.',
+                    'Add medium-fine ground coffee and level the coffee bed gently.',
+                    'Pour 50ml hot water in spiral motion to bloom the coffee for 45 seconds.',
+                    'Continue pouring water gently in concentric circles until target volume is reached.',
+                    'Allow complete drawdown, swirl server, and enjoy bright crisp notes.'
+                ]
+            },
+            'barako-trad': {
+                title: 'Traditional Cavite Barako Brew',
+                description: 'Authentic heirloom style boiling method used in Cavite & Batangas households.',
+                time: '5 Mins',
+                temp: '100°C / Boiling',
+                grind: 'Medium-Coarse',
+                ratio: 12,
+                bgImg: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1000&auto=format&fit=crop',
+                youtubeId: 'st571DYYTR8',
+                steps: [
+                    'Boil fresh water in a classic pot or saucepan.',
+                    'Add Batangas Barako coffee grounds and brown muscovado sugar directly into boiling water.',
+                    'Simmer gently on low heat for 2-3 minutes to release deep aromas.',
+                    'Turn off flame, let grounds settle to the bottom of the pot for 2 minutes.',
+                    'Pour into mugs through a fine cloth filter or strainer.'
+                ]
+            },
+            'espresso': {
+                title: 'Espresso Machine Extraction',
+                description: 'Intense, heavy body with thick golden crema. Base for Lattes and Cappuccinos.',
+                time: '28 Secs',
+                temp: '93°C / 200°F',
+                grind: 'Fine Powder',
+                ratio: 2, // 18g in, 36g out
+                bgImg: 'https://images.unsplash.com/photo-1610889556528-9a770e32642f?q=80&w=1000&auto=format&fit=crop',
+                youtubeId: 'A1S_S43S_eM',
+                steps: [
+                    'Purge group head and wipe portafilter basket clean and dry.',
+                    'Dose 18g finely ground Gourmet Farms Espresso Blend.',
+                    'Distribute evenly and tamp firmly with 30lbs of level pressure.',
+                    'Lock portafilter and start extraction immediately.',
+                    'Aim for 36ml liquid espresso in 25 to 30 seconds with rich hazelnut crema.'
+                ]
+            }
+        };
+
+        /* -------------------------------------------------------------
+           4. APP STATE MANAGEMENT
+        ------------------------------------------------------------- */
+        let cart = [];
+        let wishlist = [];
+        let activeFilter = 'all';
+        let currentQuickViewProduct = null;
+        let quickViewQty = 1;
+        let brewTimerInterval = null;
+        let brewTimerSeconds = 240;
+
+        /* -------------------------------------------------------------
+           5. DOM ELEMENT REFERENCES
+        ------------------------------------------------------------- */
+        const productGrid = document.getElementById('productGrid');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartDrawerBackdrop = document.getElementById('cartDrawerBackdrop');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartCountBadge = document.getElementById('cartCountBadge');
+        const cartDrawerCount = document.getElementById('cartDrawerCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartTotal = document.getElementById('cartTotal');
+        const shippingProgressBar = document.getElementById('shippingProgressBar');
+        const shippingProgressText = document.getElementById('shippingProgressText');
+        const shippingPercentText = document.getElementById('shippingPercentText');
+        
+        // Modal Elements
+        const quickViewModal = document.getElementById('quickViewModal');
+        const videoModal = document.getElementById('videoModal');
+        const videoIframe = document.getElementById('videoIframe');
+
+        /* -------------------------------------------------------------
+           6. INITIALIZATION & EVENT LISTENERS
+        ------------------------------------------------------------- */
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            renderReviews();
+            updateBrewingSection('french-press');
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Cart Slide Drawer Toggle
+            document.getElementById('cartDrawerBtn').addEventListener('click', openCart);
+            document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+            cartDrawerBackdrop.addEventListener('click', closeCart);
+
+            // Mobile Navigation Toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.toggle('hidden');
+            });
+
+            // Filter Category Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('active-tab');
+                        b.classList.add('bg-white', 'text-espresso-800');
+                    });
+                    e.target.classList.add('active-tab');
+                    e.target.classList.remove('bg-white', 'text-espresso-800');
+                    activeFilter = e.target.dataset.filter;
+                    renderProducts();
+                });
+            });
+
+            // Sorting Select
+            document.getElementById('sortSelect').addEventListener('change', renderProducts);
+
+            // Quick View Modal Controls
+            document.getElementById('closeQuickView').addEventListener('click', closeQuickView);
+            document.getElementById('qvQtyMinus').addEventListener('click', () => {
+                if (quickViewQty > 1) {
+                    quickViewQty--;
+                    document.getElementById('qvQtyDisplay').textContent = quickViewQty;
+                }
+            });
+            document.getElementById('qvQtyPlus').addEventListener('click', () => {
+                quickViewQty++;
+                document.getElementById('qvQtyDisplay').textContent = quickViewQty;
+            });
+            document.getElementById('qvAddToCartBtn').addEventListener('click', () => {
+                if (currentQuickViewProduct) {
+                    const grind = document.getElementById('qvGrindSelect').value;
+                    const size = document.getElementById('qvSizeSelect').value;
+                    addToCart(currentQuickViewProduct.id, quickViewQty, grind, size);
+                    closeQuickView();
+                }
+            });
+
+            // Review Form Star Rating Selection
+            document.querySelectorAll('.star-btn').forEach(star => {
+                star.addEventListener('click', (e) => {
+                    const rating = parseInt(e.target.dataset.rating);
+                    document.getElementById('selectedRatingValue').value = rating;
+                    document.querySelectorAll('.star-btn').forEach((s, idx) => {
+                        if (idx < rating) {
+                            s.classList.add('text-amber-500');
+                            s.classList.remove('text-gray-300');
+                        } else {
+                            s.classList.remove('text-amber-500');
+                            s.classList.add('text-gray-300');
+                        }
+                    });
+                });
+            });
+
+            // Photo Upload Preview Logic
+            const photoInput = document.getElementById('reviewPhotoInput');
+            photoInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.getElementById('previewImg').src = event.target.result;
+                        document.getElementById('uploadPlaceholder').classList.add('hidden');
+                        document.getElementById('uploadPreview').classList.remove('hidden');
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Review Form Submit Handler
+            document.getElementById('reviewForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('reviewerName').value;
+                const coffee = document.getElementById('reviewerCoffee').value;
+                const rating = parseInt(document.getElementById('selectedRatingValue').value);
+                const comment = document.getElementById('reviewComment').value;
+                const previewImg = document.getElementById('previewImg').src;
+                const hasPhoto = !document.getElementById('uploadPreview').classList.contains('hidden');
+
+                const newReview = {
+                    name: name,
+                    coffee: coffee,
+                    rating: rating,
+                    date: 'Just now',
+                    comment: comment,
+                    image: hasPhoto ? previewImg : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop',
+                    verified: true
+                };
+
+                communityReviews.unshift(newReview);
+                renderReviews();
+                showToast('✨ Thank you! Your review & coffee photo have been posted!');
+                
+                // Reset form
+                e.target.reset();
+                document.getElementById('uploadPlaceholder').classList.remove('hidden');
+                document.getElementById('uploadPreview').classList.add('hidden');
+            });
+
+            // Brewing Method Tabs
+            document.querySelectorAll('.brew-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    const btn = e.currentTarget;
+                    document.querySelectorAll('.brew-tab').forEach(b => {
+                        b.classList.remove('active-tab');
+                        b.classList.add('bg-white', 'text-espresso-800');
+                    });
+                    btn.classList.add('active-tab');
+                    btn.classList.remove('bg-white', 'text-espresso-800');
+                    updateBrewingSection(btn.dataset.method);
+                });
+            });
+
+            // Brewing Cup Calculator Slider
+            document.getElementById('cupSlider').addEventListener('input', (e) => {
+                const cups = parseInt(e.target.value);
+                document.getElementById('cupCount').textContent = `${cups} Cup${cups > 1 ? 's' : ''}`;
+                const activeMethod = document.querySelector('.brew-tab.active-tab').dataset.method;
+                const methodData = BREWING_DATA[activeMethod];
+                
+                const waterMl = cups * 225; // 225ml per cup
+                const coffeeGrams = Math.round(waterMl / methodData.ratio);
+
+                document.getElementById('calcCoffeeGrams').textContent = `${coffeeGrams}g`;
+                document.getElementById('calcWaterMl').textContent = `${waterMl}ml`;
+            });
+
+            // Brew Timer Controls
+            document.getElementById('startTimerBtn').addEventListener('click', toggleBrewTimer);
+            document.getElementById('resetTimerBtn').addEventListener('click', resetBrewTimer);
+
+            // Video Modal
+            document.getElementById('openVideoBtn').addEventListener('click', openVideoModal);
+            document.getElementById('closeVideoBtn').addEventListener('click', closeVideoModal);
+
+            // Newsletter
+            document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast('🎉 Welcome! Coupon code FRESHBREW applied for 10% OFF.');
+                e.target.reset();
+            });
+
+            // Checkout Demo Button
+            document.getElementById('checkoutBtn').addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showToast('⚠️ Your shopping cart is empty!');
+                    return;
+                }
+                alert('☕ Thank you for sampling Gourmet Farms Coffee!\n\nThis is a front-end preview demonstration ready for hosting in Shopify. In a production Shopify store, this redirects directly to Shopify Checkout.');
+            });
+        }
+
+        /* -------------------------------------------------------------
+           7. RENDER PRODUCTS GRID (Best Brew)
+        ------------------------------------------------------------- */
+        function renderProducts() {
+            let filtered = PRODUCTS.filter(p => activeFilter === 'all' || p.category === activeFilter);
+            const sortVal = document.getElementById('sortSelect').value;
+
+            if (sortVal === 'price-low') filtered.sort((a, b) => a.price - b.price);
+            if (sortVal === 'price-high') filtered.sort((a, b) => b.price - a.price);
+            if (sortVal === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+
+            productGrid.innerHTML = '';
+
+            filtered.forEach(product => {
+                const isWishlisted = wishlist.includes(product.id);
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl border border-espresso-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group";
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Product Image Container -->
+                        <div class="relative bg-espresso-100 overflow-hidden aspect-square flex items-center justify-center p-6">
+                            <span class="absolute top-3 left-3 bg-espresso-950 text-amber-400 font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full z-10 shadow">
+                                ${product.badge}
+                            </span>
+                            <button class="wishlist-toggle absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-espresso-800 flex items-center justify-center z-10 transition shadow" data-id="${product.id}">
+                                <i class="${isWishlisted ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart"></i>
+                            </button>
+                            <img src="${product.image}" alt="${product.name}" class="object-cover w-full h-full rounded-2xl group-hover:scale-105 transition duration-500">
+                            
+                            <!-- Quick View Overlay Button -->
+                            <button class="quick-view-btn absolute bottom-3 left-1/2 -translate-x-1/2 bg-espresso-900/90 hover:bg-espresso-950 text-cream text-xs font-semibold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg whitespace-nowrap" data-id="${product.id}">
+                                <i class="fa-solid fa-eye mr-1"></i> Quick View
+                            </button>
+                        </div>
+
+                        <!-- Details Section -->
+                        <div class="p-5">
+                            <div class="flex items-center justify-between text-xs text-espresso-600 mb-1">
+                                <span class="font-semibold text-amber-600">${product.roast}</span>
+                                <span><i class="fa-solid fa-star text-amber-500 mr-1"></i>${product.rating} (${product.reviewsCount})</span>
+                            </div>
+                            <h3 class="font-serif-heading font-bold text-base text-espresso-950 group-hover:text-amber-600 transition mb-2">
+                                ${product.name}
+                            </h3>
+                            <p class="text-xs text-espresso-600 line-clamp-2 leading-relaxed mb-4">
+                                ${product.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Footer Action -->
+                    <div class="p-5 pt-0 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase text-espresso-500 block font-semibold">Price</span>
+                            <span class="font-bold text-lg text-espresso-950">₱${product.price.toFixed(2)}</span>
+                        </div>
+                        <button class="add-to-cart-btn bg-espresso-800 hover:bg-espresso-950 text-white font-bold text-xs px-4 py-3 rounded-xl transition flex items-center space-x-1 shadow" data-id="${product.id}">
+                            <i class="fa-solid fa-plus text-amber-400"></i>
+                            <span>Add</span>
+                        </button>
+                    </div>
+                `;
+
+                // Attach listeners for this card
+                card.querySelector('.quick-view-btn').addEventListener('click', () => openQuickView(product));
+                card.querySelector('.add-to-cart-btn').addEventListener('click', () => addToCart(product.id, 1, 'Whole Bean', '250g Bag'));
+                card.querySelector('.wishlist-toggle').addEventListener('click', (e) => toggleWishlist(product.id, e.currentTarget));
+
+                productGrid.appendChild(card);
+            });
+        }
+
+        /* -------------------------------------------------------------
+           8. COMMUNITY REVIEWS RENDER (Espresso Yourself)
+        ------------------------------------------------------------- */
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = '';
+
+            communityReviews.forEach(rev => {
+                const starsHtml = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-2xl border border-espresso-200 shadow-sm flex flex-col justify-between space-y-3";
+                
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-espresso-900">${rev.name}</span>
+                            <span class="text-[10px] text-espresso-500">${rev.date}</span>
+                        </div>
+                        <div class="text-amber-500 text-xs font-bold">${starsHtml}</div>
+                        <div class="text-[11px] font-semibold text-amber-600 flex items-center space-x-1">
+                            <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                            <span>Verified Purchaser (${rev.coffee})</span>
+                        </div>
+                        <p class="text-xs text-espresso-700 italic">"${rev.comment}"</p>
+                    </div>
+                    ${rev.image ? `<img src="${rev.image}" alt="Community Brew" class="w-full h-36 object-cover rounded-xl border border-espresso-200">` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        /* -------------------------------------------------------------
+           9. BREWING GUIDE RENDER & TIMER (Sip It Like You Mean It)
+        ------------------------------------------------------------- */
+        function updateBrewingSection(methodKey) {
+            const data = BREWING_DATA[methodKey];
+            if (!data) return;
+
+            document.getElementById('brewTitleDisplay').textContent = data.title;
+            document.getElementById('brewDescDisplay').textContent = data.description;
+            document.getElementById('brewTimeDisplay').textContent = data.time;
+            document.getElementById('brewTempDisplay').textContent = data.temp;
+            document.getElementById('brewGrindDisplay').textContent = data.grind;
+            document.getElementById('brewHeroBg').style.backgroundImage = `url('${data.bgImg}')`;
+
+            // Calculate ratio for current cup slider value
+            const cups = parseInt(document.getElementById('cupSlider').value);
+            const waterMl = cups * 225;
+            const coffeeGrams = Math.round(waterMl / data.ratio);
+            document.getElementById('calcCoffeeGrams').textContent = `${coffeeGrams}g`;
+            document.getElementById('calcWaterMl').textContent = `${waterMl}ml`;
+            document.getElementById('calcRatioText').textContent = `1:${data.ratio}`;
+
+            // Steps
+            const stepsList = document.getElementById('brewStepsList');
+            stepsList.innerHTML = '';
+            data.steps.forEach((step, idx) => {
+                const stepEl = document.createElement('div');
+                stepEl.className = "flex items-start space-x-3 text-xs text-espresso-800";
+                stepEl.innerHTML = `
+                    <span class="w-5 h-5 rounded-full bg-amber-500 text-espresso-950 font-bold flex items-center justify-center shrink-0 mt-0.5 text-[10px]">
+                        ${idx + 1}
+                    </span>
+                    <p class="leading-relaxed">${step}</p>
+                `;
+                stepsList.appendChild(stepEl);
+            });
+
+            // Reset Timer to 4 minutes or 3 minutes
+            resetBrewTimer();
+        }
+
+        function toggleBrewTimer() {
+            const btn = document.getElementById('startTimerBtn');
+            if (brewTimerInterval) {
+                // Pause
+                clearInterval(brewTimerInterval);
+                brewTimerInterval = null;
+                btn.innerHTML = '<i class="fa-solid fa-play mr-1"></i> Resume Timer';
+            } else {
+                // Start
+                btn.innerHTML = '<i class="fa-solid fa-pause mr-1"></i> Pause Timer';
+                brewTimerInterval = setInterval(() => {
+                    if (brewTimerSeconds > 0) {
+                        brewTimerSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(brewTimerInterval);
+                        brewTimerInterval = null;
+                        showToast('🔔 Brew Timer Complete! Enjoy your Gourmet Farms Coffee!');
+                        btn.innerHTML = '<i class="fa-solid fa-play mr-1"></i> Start Brew Timer';
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetBrewTimer() {
+            if (brewTimerInterval) {
+                clearInterval(brewTimerInterval);
+                brewTimerInterval = null;
+            }
+            brewTimerSeconds = 240; // Default 4 mins
+            updateTimerDisplay();
+            document.getElementById('startTimerBtn').innerHTML = '<i class="fa-solid fa-play mr-1"></i> Start Brew Timer';
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(brewTimerSeconds / 60);
+            const secs = brewTimerSeconds % 60;
+            document.getElementById('timerDisplay').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        /* -------------------------------------------------------------
+           10. CART DRAWER OPERATIONS
+        ------------------------------------------------------------- */
+        function addToCart(productId, qty = 1, grind = 'Whole Bean', size = '250g Bag') {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingIndex = cart.findIndex(item => item.id === productId && item.grind === grind && item.size === size);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += qty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    grind: grind,
+                    size: size,
+                    qty: qty
+                });
+            }
+
+            updateCartUI();
+            openCart();
+            showToast(`☕ Added ${qty}x ${product.name} to your cart!`);
+        }
+
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
+            let itemCount = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-mug-saucer text-4xl text-espresso-300"></i>
+                        <h4 class="font-bold text-espresso-800 text-sm">Your coffee bag is empty!</h4>
+                        <p class="text-xs text-espresso-500">Discover our Batangas Barako & Arabica blends.</p>
+                        <a href="#best-brew" onclick="closeCart()" class="inline-block bg-amber-500 text-espresso-950 font-bold text-xs px-5 py-2.5 rounded-full hover:bg-amber-600 transition">
+                            Explore Best Brews
+                        </a>
+                    </div>
+                `;
+            } else {
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.qty;
+                    subtotal += itemTotal;
+                    itemCount += item.qty;
+
+                    const cartRow = document.createElement('div');
+                    cartRow.className = "flex items-center justify-between bg-espresso-50 p-3 rounded-2xl border border-espresso-200 gap-3";
+                    cartRow.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl border border-espresso-200 shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-xs text-espresso-950 truncate">${item.name}</h4>
+                            <p class="text-[10px] text-espresso-600">${item.grind} • ${item.size}</p>
+                            <span class="text-xs font-bold text-amber-600">₱${item.price.toFixed(2)}</span>
+                        </div>
+                        <div class="flex flex-col items-end space-y-1">
+                            <button class="text-espresso-400 hover:text-red-500 text-xs p-1" onclick="removeFromCart(${index})">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <div class="flex items-center border border-espresso-300 bg-white rounded-lg overflow-hidden text-xs">
+                                <button class="px-2 py-0.5 hover:bg-espresso-100" onclick="changeQty(${index}, -1)">-</button>
+                                <span class="px-2 font-bold">${item.qty}</span>
+                                <button class="px-2 py-0.5 hover:bg-espresso-100" onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartRow);
+                });
+            }
+
+            // Calculations
+            cartSubtotal.textContent = `₱${subtotal.toFixed(2)}`;
+            cartTotal.textContent = `₱${subtotal.toFixed(2)}`;
+            cartCountBadge.textContent = itemCount;
+            cartDrawerCount.textContent = itemCount;
+
+            // Free Shipping Progress (Threshold: ₱1500)
+            const targetShipping = 1500;
+            const progress = Math.min(100, Math.round((subtotal / targetShipping) * 100));
+            shippingProgressBar.style.width = `${progress}%`;
+            shippingPercentText.textContent = `${progress}%`;
+
+            if (subtotal >= targetShipping) {
+                shippingProgressText.innerHTML = '<span class="text-emerald-700 font-bold">🎉 You qualify for FREE Express Shipping!</span>';
+            } else {
+                const diff = targetShipping - subtotal;
+                shippingProgressText.textContent = `Add ₱${diff.toFixed(2)} more for FREE Cavite Express Shipping!`;
+            }
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+            showToast('Item removed from cart.');
+        }
+
+        function openCart() {
+            cartDrawer.classList.remove('translate-x-full');
+            cartDrawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeCart() {
+            cartDrawer.classList.add('translate-x-full');
+            cartDrawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        /* -------------------------------------------------------------
+           11. MODAL HELPERS & WISHLIST
+        ------------------------------------------------------------- */
+        function openQuickView(product) {
+            currentQuickViewProduct = product;
+            quickViewQty = 1;
+
+            document.getElementById('qvTitle').textContent = product.name;
+            document.getElementById('qvImage').src = product.image;
+            document.getElementById('qvPrice').textContent = `₱${product.price.toFixed(2)}`;
+            document.getElementById('qvDescription').textContent = product.description;
+            document.getElementById('qvRoastBadge').textContent = product.roast;
+            document.getElementById('qvQtyDisplay').textContent = '1';
+
+            quickViewModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeQuickView() {
+            quickViewModal.classList.add('opacity-0', 'pointer-events-none');
+            currentQuickViewProduct = null;
+        }
+
+        function openVideoModal() {
+            const activeMethod = document.querySelector('.brew-tab.active-tab').dataset.method;
+            const methodData = BREWING_DATA[activeMethod];
+            
+            document.getElementById('videoModalTitle').textContent = `${methodData.title} Video Guide`;
+            // Using standard embed URL
+            videoIframe.src = `https://www.youtube.com/embed/${methodData.youtubeId}?autoplay=1`;
+            videoModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeVideoModal() {
+            videoModal.classList.add('opacity-0', 'pointer-events-none');
+            videoIframe.src = '';
+        }
+
+        function toggleWishlist(productId, buttonEl) {
+            const index = wishlist.indexOf(productId);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast('Removed from Wishlist');
+            } else {
+                wishlist.push(productId);
+                showToast('❤️ Added to Wishlist');
+            }
+            const icon = buttonEl.querySelector('i');
+            icon.className = wishlist.includes(productId) ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart';
+            
+            const badge = document.getElementById('wishlistBadge');
+            badge.textContent = wishlist.length;
+            if (wishlist.length > 0) badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = "bg-espresso-950 text-white text-xs px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-2 border border-espresso-800 transform translate-y-2 transition duration-300 pointer-events-auto";
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-info text-amber-400"></i>
+                <span class="font-medium">${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
